@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <link href="../css/githubcommits.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id = "app">
+            <div id="demo">
+                <h1>Latest Vue.js Commits</h1>
+                <div>
+                    <span>Branches</span>
+                    <template v-for="branch in branches">
+                        <input
+                               type="radio"
+                               :id="branch"
+                               :value="branch"
+                               name="branch"
+                               v-model="currentBranch"
+                               />
+                        <label :for="branch">{{ branch }}</label>
+                      </template>
+                </div>
+                <div>
+                    <span :for="link">Repo link</span>
+                    <input type="text" :id="link" :value="link" name="repo-link" v-model="link"/>
+                </div>
+
+                <div>
+                    <span :for="link">Commits per page</span>
+                    <input type="number" :id="per_page" :value="per_page" name="commits-per-page" v-model="per_page"/>
+                </div>
+                
+                <div>
+                    <p>{{link}}@{{ currentBranch }}</p>
+                    <ul>
+                    <li v-for="record in commits">
+                        <a :href="record.html_url" target="_blank" class="commit"
+                        >{{ record.sha.slice(0, 7) }}</a
+                        >
+                        - <span class="message">{{ truncate(record.commit.message) }} </span>
+                        <span class="signed-commit verified" v-if="record.commit.verification.verified" >Verified</span>
+                        <span class="signed-commit unverified" v-if="!record.commit.verification.verified">Unverified</span>
+                        <br />
+                        by
+                        <span class="author">
+                            <img height="20" width="20" :src="record.author.avatar_url" alt="Imagem do autor do commit">
+                            <a :href="record.author.html_url" target="_blank"
+                                >{{ record.commit.author.name }}</a
+                        ></span
+                        >
+                        at
+                        <span class="date">{{ formatDate(record.commit.author.date) }}</span>
+                    </li>
+                    </ul>
+                </div>
+                
+            </div>
+        </div>
+    </body>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="../js/githubcommits.js"></script>
+</html>

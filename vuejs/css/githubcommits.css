@@ -1,0 +1,31 @@
+#demo {
+    font-family: "Helvetica", Arial, sans-serif;
+}
+a {
+    text-decoration: none;
+    color: #f66;
+}
+li {
+    line-height: 1.5em;
+    margin-bottom: 20px;
+}
+.author,
+.date {
+    font-weight: bold;
+}
+.signed-commit {
+    line-height: 22px;
+    padding-right: 10px;
+    padding-left: 10px;
+    /*padding: 0 7px;*/
+    border: 1px solid transparent;
+    border-radius: 2em;
+    border-color: #30363d
+}
+.signed-commit.verified {
+    color: #3FB950;
+    
+}
+.signed-commit.unverified {
+    color: #D29922;
+}
